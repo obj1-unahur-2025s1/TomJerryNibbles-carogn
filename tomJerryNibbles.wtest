@@ -1,17 +1,64 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
+describe "Tom y jerry" {
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+  test "Velocidad maxima de tom es 10" {
+    assert.equals(10, tom.velocidad())
   }
 
-  test "test 3" {
-    assert.that(true)
+  test "Tom come a jerry, su velocidad es 15.2" {
+    tom.comer(jerry)
+    assert.equals(15.2,tom.velocidad())
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "Tom corre, velocidad 14" {
+    tom.comer(jerry)
+    tom.correr(24)
+    assert.equals(14,tom.velocidad())
   }
 
+  test "Tom come a nibbles después de comer a Jerry y correr" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    assert.equals(18.7, tom.velocidad())
+  }
+
+  test "Jerry cumple años, tom se lo come"{
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAños()
+    tom.comer(jerry)
+    assert.equals(25.9,tom.velocidad())
+  }
+    test "Tom corre 38m, velocidad 24"{
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAños()
+    tom.comer(jerry)
+    tom.correr(38)
+    assert.equals(24,tom.velocidad())
+  }
+
+    test "Tom puede cazar a nibbles"{
+
+      assert.that(tom.puedeCazarADistancia(20))
+      tom.cazarADistancia(20, nibbles)
+      assert.equals(87, tom.energia())
+      assert.equals(13.7, tom.velocidad())
+    }
+
+    test "Tom come a Perez, sube su velocidad" {
+      tom.comer(perez)
+      assert.equals(5 + (50 + 12 + 30) / 10, tom.velocidad())  // 5 + 92/10 = 14.2
+    }
 }
+
+//Al inicio, la velocidad máxima de Tom es 10 (su energía es 50)
+//Si come a Jerry, la velocidad máxima pasa a ser 15.2 (su energía es 102)
+//Si corre 24 metros, entonces su velocidad máxima pasa a ser 14 (su energía es 90)
+//Si come a Nibbles, pasa a tener de velocidad máxima 18.7 (su energía es 137)
+//si Jerry cumple años (3 años de edad), y luego Tom lo vuelve a comer, pasaría a tener 25.9 (su energia es 209)
+//si corre 38 metros su velocidad pasa a ser 24 (su energia es 190)
